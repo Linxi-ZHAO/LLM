@@ -1,13 +1,20 @@
 import json
+import argparse
 
-ans_file = ''
-label_file = ''
+parser = argparse.ArgumentParser()
 
-answers = [json.loads(q) for q in open(ans_file, 'r')]
-label_list = [json.loads(q)['label'] for q in open(label_file, 'r')]
+parser.add_argument("--answers_file", type=str, default='../POPE/output/answer_coco_minival_conversation.jsonl')
+parser.add_argument("--labels_file", type=str, default='../POPE/output/coco/conversation/coco_minival_conversation_label.json')
+
+args = parser.parse_args()
+
+answers = [json.loads(q) for q in open(args.answers_file, 'r')]
+file = [json.loads(q) for q in open(args.labels_file, 'r')][0]
+label_list = [e['label'] for e in file]
+print(len(answers), len(label_list))
 
 for answer in answers:
-    text = answer['answer']
+    text = answer['text']
 
     # Only keep the first sentence
     if text.find('.') != -1:
@@ -25,14 +32,12 @@ for i in range(len(label_list)):
         label_list[i] = 0
     else:
         label_list[i] = 1
-
 pred_list = []
 for answer in answers:
     if answer['answer'] == 'no':
         pred_list.append(0)
     else:
         pred_list.append(1)
-
 pos = 1
 neg = 0
 yes_ratio = pred_list.count(1) / len(pred_list)

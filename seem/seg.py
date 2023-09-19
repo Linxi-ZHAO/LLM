@@ -5,7 +5,9 @@ from PIL import Image
 import torch
 import tqdm
 import random
-
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from seem.xdecoder.BaseModel import BaseModel
 from seem.xdecoder import build_model
 from seem.utils.distributed import init_distributed
@@ -60,3 +62,12 @@ def segment(img_path_file, seg_num):
         segment_result_file.write(json.dumps(result) + '\n')
     print(f"segmentation result saved in segmentation/{img_path_file}_segmentation_result.json...")
     return result_list
+
+if __name__ == '__main__':
+    import argparse
+    parser = argparse.ArgumentParser(description='segmentation')
+    parser.add_argument('--img_path_file', type=str, default='val.json', help='image path file')
+    parser.add_argument('--seg_num', type=int, default=10, help='segmentation number')
+    args = parser.parse_args()
+
+    segment(args.img_path_file, args.seg_num)

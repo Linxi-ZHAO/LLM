@@ -1,0 +1,1 @@
+{"answer_file": "pope_sub240_control_cfg-0.1.jsonl", "questions_num": 240, "length_response": 16.53, "Accuracy": 0.6125, "TP": 115, "FP": 88, "FN": 5, "TN": 32, "Yes_ratio": 0.8458, "Precision": 0.5665, "Recall": 0.9583, "Specificity": 0.2667, "F1": 0.7121}
