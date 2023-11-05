@@ -16,8 +16,8 @@ def get_parser():
     parser.add_argument("--question_path", type=str, default="../POPE/llava_qa/question")
     parser.add_argument("--question_file", type=str, default="I1_sub240_control.json")
     parser.add_argument("--answer_path", type=str, default="../POPE/llava_qa/answer")
-    parser.add_argument("--answers_file", type=str, default="I1_sub240_control_cfg1.0")
-    parser.add_argument("--cfg_ls", nargs='+', type=float, default=[1.0])
+    parser.add_argument("--answers_file", type=str, default="I1_sub240_control-cfg1.0")
+    parser.add_argument("--cfg_ls", nargs='+', type=float, default=None)
 
     args = parser.parse_args()
     return args
@@ -124,7 +124,11 @@ if __name__ == "__main__":
     args = get_parser()
     if args.cfg_ls is not None:
         for cfg in args.cfg_ls:
-            args.answers_file = args.answers_file[:-13] + f"_cfg{cfg}.jsonl"
+            args.answers_file = args.answers_file[:-13] + f"-cfg{cfg}.jsonl"
             run(args)
     else:
-        run(args)
+        # get all files in the folder that args.answers_file[:-13] + f"-cfg{cfg}.jsonl"
+        for file in os.listdir(args.answer_path):
+            if file.startswith(args.answers_file[:-13]) and file.endswith(".jsonl"): #TODO: check the file name
+                args.answers_file = file
+                run(args)

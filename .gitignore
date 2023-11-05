@@ -1,0 +1,25 @@
+# Python
+__pycache__
+*.pyc
+*.egg-info
+dist
+
+# Data
+!**/alpaca-data-conversation.json
+data/minival2014/sub240/
+
+# Editor
+.idea
+*.swp
+
+# Other
+.DS_Store
+wandb
+wandb_test.py
+output
+
+checkpoints
+ckpts*
+
+data/
+*.cache

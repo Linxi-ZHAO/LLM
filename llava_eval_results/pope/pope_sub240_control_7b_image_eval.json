@@ -1,0 +1,2 @@
+{"answer_file": "pope_sub240_control_7b_image_cfg0.3.jsonl", "questions_num": 240, "length_response": 325.44, "Accuracy": 0.6833, "TP": 114, "FP": 70, "FN": 6, "TN": 50, "Yes_ratio": 0.7667, "Precision": 0.6196, "Recall": 0.95, "Specificity": 0.4167, "F1": 0.75}
+{"answer_file": "pope_sub240_control_7b_image_cfg0.6.jsonl", "questions_num": 240, "length_response": 323.98, "Accuracy": 0.6708, "TP": 98, "FP": 57, "FN": 22, "TN": 63, "Yes_ratio": 0.6458, "Precision": 0.6323, "Recall": 0.8167, "Specificity": 0.525, "F1": 0.7127}
